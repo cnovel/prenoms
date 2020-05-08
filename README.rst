@@ -1,6 +1,12 @@
 prenoms
 =======
 
+.. image:: https://travis-ci.com/cnovel/prenoms.svg?branch=master
+    :target: https://travis-ci.com/cnovel/prenoms
+
+.. image:: https://codecov.io/gh/cnovel/prenoms/branch/master/graph/badge.svg
+    :target https://codecov.io/gh/cnovel/prenoms
+
 Générateur de prénoms
 
 Installation
