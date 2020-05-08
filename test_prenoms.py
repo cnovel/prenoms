@@ -61,6 +61,11 @@ class NamesTest(unittest.TestCase):
             self.assertEqual(prenoms.get_nom_complet(), "Claude Dupont")
             self.assertEqual(prenoms.get_nom_complet(0.3), "Claude Dupont")
 
+    def test_bad_originality(self):
+        with patch_file(test_files, test_tables):
+            self.assertEqual(prenoms.get_nom_complet(-1), "Claude Dupont")
+            self.assertEqual(prenoms.get_nom_complet(2), "Claude Dupont")
+
     def test_empty_file(self):
         empty_files = {
             'first': full_path('test/empty.txt'),
