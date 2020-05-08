@@ -9,7 +9,7 @@ python:
   - "pypy"
 
 install:
-  - pip install coverage coveralls --use-mirrors
+  - pip install coverage coveralls
 
 script: coverage run setup.py test
 
