@@ -6,11 +6,10 @@ python:
   - "3.6"
   - "3.7"
   - "3.8"
-  - "pypy"
 
 install:
-  - pip install coverage coveralls
+  - pip install coverage codecov
 
 script: coverage run setup.py test
 
-after_success: coveralls
+after_success: codecov
