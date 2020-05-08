@@ -1,7 +1,7 @@
 import prenoms
 from setuptools import setup, find_packages
 
-with open('README.rst') as readme_file:
+with open('README.md') as readme_file:
     readme = readme_file.read()
 
 setup(
@@ -11,9 +11,10 @@ setup(
     author_email='pypi-prenoms@kosmon.fr',
     url="https://github.com/cnovel/prenoms",
     description="Générateur de noms aléatoire",
-    long_description='\n\n'.join((
+    long_description='\n\n'.join(
         readme
-    )),
+    ),
+    long_description_content_type='text/markdown',
     license=prenoms.__license__,
     packages=find_packages(),
     package_data={'prenoms': ['dist.*']},
