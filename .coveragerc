@@ -1,0 +1,8 @@
+[run]
+source = prenoms
+branch = True
+
+[report]
+exclude_lines =
+    # Don't measure coverage of cli-only code
+    if __name__ == "__main__":
