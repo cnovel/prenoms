@@ -26,7 +26,10 @@ def get_double_rank(originality: float):
         originality = 1
     rank = random.random()
 
-    power = originality ** 2 - 2.5 * originality + 2
+    # Originality = 0   -> power = 4
+    # Originality = 0.5 -> power = 1
+    # Originality = 1   -> power = 0.01
+    power = 4.02 * (originality ** 2) - 8.01 * originality + 4
 
     return rank ** power
 

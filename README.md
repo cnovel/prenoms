@@ -37,7 +37,7 @@ Quelques exemples d'utilisation :
 ```
 
 
-Le paramètre `originality` permet de spécifier l'originalité du nom. Une originalité proche de 0 va retourner des noms communs, une originialité proche de 1 va retourner des noms rares.
+Le paramètre `originality` permet de spécifier l'originalité du nom. Une originalité proche de 0 va retourner des noms communs, une originalité proche de 1 va retourner des noms rares.
 
 ## Licence
 Ce projet est sous licence MIT.

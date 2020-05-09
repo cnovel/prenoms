@@ -1,0 +1,3 @@
+include *.md
+include prenoms/dist.noms.txt prenoms/dist.prenoms.txt
+include licenses/names.txt
