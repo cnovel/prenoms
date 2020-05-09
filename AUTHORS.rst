@@ -1,4 +1,5 @@
-# Authors
+Authors
+=======
 
 - Cyril Novel <https://www.twitter.com/CrlNvl>
 - Trey Hunner <http://treyhunner.com> (*names* Python package)

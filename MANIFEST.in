@@ -1,0 +1,2 @@
+include *.rst
+include prenoms/dist.noms.txt prenoms/dist.prenoms.txt
