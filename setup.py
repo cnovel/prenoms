@@ -11,10 +11,8 @@ setup(
     author_email='pypi-prenoms@kosmon.fr',
     url="https://github.com/cnovel/prenoms",
     description="Générateur de noms aléatoire",
-    long_description='\n\n'.join(
-        readme
-    ),
     long_description_content_type='text/markdown',
+    long_description=readme,
     license=prenoms.__license__,
     packages=find_packages(),
     package_data={'prenoms': ['dist.*']},
