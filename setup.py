@@ -19,7 +19,7 @@ setup(
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'names = prenoms.main:main',
+            'prenoms = prenoms.main:main',
         ],
     },
     classifiers=[

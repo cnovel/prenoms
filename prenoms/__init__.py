@@ -1,7 +1,7 @@
 import prenoms.utils
 
 __title__ = 'prenoms'
-__version__ = '0.1.5'
+__version__ = '0.1.7'
 __author__ = 'Cyril Novel'
 __license__ = 'MIT'
 
