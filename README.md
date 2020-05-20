@@ -8,7 +8,9 @@ Générateur de prénoms
 
 Le script est disponible sur PyPI. Pour installer avec pip :
 
-    pip install prenoms
+```bash
+pip install prenoms
+```
 
 ## Utilisation
 `prenoms` peut être utilisé via la ligne de commande ou importé comme paquet Python.
@@ -25,15 +27,15 @@ Jean Dupont
 Quelques exemples d'utilisation :
 
 ```python
-    >>> import prenoms
-    >>> prenoms.get_nom_complet()
-    'Jean Bernard'
-    >>> prenoms.get_prenom()
-    'Lucie'
-    >>> prenoms.get_nom()
-    'Lefevre'
-    >>> prenoms.get_prenom(originality=1)
-    'Hortensius'
+>>> import prenoms
+>>> prenoms.get_nom_complet()
+'Jean Bernard'
+>>> prenoms.get_prenom()
+'Lucie'
+>>> prenoms.get_nom()
+'Lefevre'
+>>> prenoms.get_prenom(originality=1)
+'Hortensius'
 ```
 
 
