@@ -119,7 +119,7 @@ def create_key(name_type: str, year: int, gender: Gender = None):
     else:
         year_string = 'all'
 
-    key = t
+    key = name_type
     if gender is not None:
         if gender == Gender.MALE:
             key += '.m'
