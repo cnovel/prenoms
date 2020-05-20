@@ -34,17 +34,22 @@ Quelques exemples d'utilisation :
 'Lucie'
 >>> prenoms.get_nom()
 'Lefevre'
->>> prenoms.get_prenom(originality=1)
+>>> prenoms.get_prenom(gender=Gender.MALE, originality=Originality.VERY_RARE, year=1995)
 'Hortensius'
 ```
 
+Le paramètre `originality` permet de spécifier l'originalité du nom ou du prénom. Quatre options sont disponibles :
 
-Le paramètre `originality` permet de spécifier l'originalité du nom. Une originalité proche de 0 va retourner des noms communs, une originalité proche de 1 va retourner des noms rares.
+* `COMMON`
+* `UNCOMMON`
+* `RARE`
+* `VERY_RARE`
+
+Le paramètre `gender` permet de spécifier le genre du prénom, les options sont `MALE` ou `FEMALE`.
+
+Le paramètre `year` permet de spécifier la décennie de recherche pour un nom ou un prénom. Si ce paramètre est égal à `None`, l'entièreté des données est utilisée.
 
 ## Licence
 Ce projet est sous licence MIT.
 
-Les données suivante proviennent de l'INSEE et appartiennent au domaine public :
-
-- dist.prenoms.txt
-- dist.noms.txt
+Les données dans le dossier `prenoms/data` proviennent de l'INSEE et appartiennent au domaine public.
