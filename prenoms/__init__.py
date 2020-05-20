@@ -1,5 +1,5 @@
 import prenoms.utils
-from prenoms.utils import Gender as Gender, Originality as Originality
+from prenoms.utils import Gender, Originality
 from random import random
 
 __title__ = 'prenoms'
