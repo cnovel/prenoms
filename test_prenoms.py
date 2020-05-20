@@ -4,11 +4,12 @@ import sys
 from os.path import abspath, join, dirname
 from io import StringIO
 import prenoms
+from prenoms import Originality, Gender
 from prenoms.main import main
 
 
-def full_path(filename: str) -> str:
-    return abspath(join(dirname(__file__), filename))
+def full_test_path(filename: str) -> str:
+    return abspath(join(dirname(__file__), "test", filename))
 
 
 class patch_stdout(object):
@@ -42,39 +43,64 @@ class patch_file:
         prenoms.TABLES = self.old_tables
 
 
-test_files = {
-    'first': full_path('test/prenoms.txt'),
-    'last': full_path('test/noms.txt'),
-}
+test_files = {}
+for t in ['first', 'last']:
+    for gdr in ['.m', '.f']:
+        # Years
+        for y in range(1891, 2021, 10):
+            if (y == 1891 and t == 'first') or (y >= 2001 and t == 'last'):
+                continue
+            file_key = t
+            if t == 'first':
+                file_key += gdr
+            file_key += '.{}'.format(y)
+            test_files[file_key] = full_test_path("prenoms.txt") if t == 'first'\
+                else full_test_path("noms.txt")
 
-test_tables = {
-    'first': [line.strip() for line in open(test_files['first'], encoding="utf-8")],
-    'last': [line.strip() for line in open(test_files['last'], encoding="utf-8")],
-}
+        # Complete collection
+        all_key = t
+        if t == 'first':
+            all_key += gdr
+        all_key += '.all'
+        test_files[all_key] = full_test_path("prenoms.txt") if t == 'first'\
+            else full_test_path("noms.txt")
+
+test_tables = {}
+for k in test_files.keys():
+    test_tables[k] = prenoms.utils.NameTable(test_files[k])
 
 
 class NamesTest(unittest.TestCase):
     def test_correct_files(self):
         with patch_file(test_files, test_tables):
+            # Without argument
             self.assertEqual(prenoms.get_prenom(), "Claude")
             self.assertEqual(prenoms.get_nom(), "Dupont")
             self.assertEqual(prenoms.get_nom_complet(), "Claude Dupont")
-            self.assertEqual(prenoms.get_nom_complet(0.3), "Claude Dupont")
 
-    def test_bad_originality(self):
-        with patch_file(test_files, test_tables):
-            self.assertEqual(prenoms.get_nom_complet(-1), "Claude Dupont")
-            self.assertEqual(prenoms.get_nom_complet(2), "Claude Dupont")
+            # Originality
+            self.assertEqual(prenoms.get_prenom(originality=Originality.COMMON), "Claude")
+            self.assertEqual(prenoms.get_prenom(originality=Originality.UNCOMMON), "Lawrence")
+            self.assertEqual(prenoms.get_prenom(originality=Originality.RARE), "Elidja")
+            self.assertEqual(prenoms.get_prenom(originality=Originality.VERY_RARE), "Élouen")
+            self.assertEqual(prenoms.get_nom(originality=Originality.COMMON), "Dupont")
+            self.assertEqual(prenoms.get_nom(originality=Originality.UNCOMMON), "Galopin")
+            self.assertEqual(prenoms.get_nom(originality=Originality.RARE), "Mournet")
+            self.assertEqual(prenoms.get_nom(originality=Originality.VERY_RARE), "Zablot")
+
+            # Gender
+            self.assertEqual(prenoms.get_prenom(gender=Gender.MALE), "Claude")
+            self.assertEqual(prenoms.get_prenom(gender=Gender.FEMALE), "Claude")
+
+            # Year
+            self.assertEqual(prenoms.get_prenom(year=1995), "Claude")
+            self.assertEqual(prenoms.get_nom(year=1995), "Dupont")
 
     def test_empty_file(self):
-        empty_files = {
-            'first': full_path('test/empty.txt'),
-            'last': full_path('test/empty.txt'),
-        }
-        empty_tables = {
-            'first': [],
-            'last': [],
-        }
+        empty_files = {}
+        empty_tables = {}
+        for key in test_files.keys():
+            empty_tables[key] = prenoms.utils.NameTable(full_test_path('empty.txt'))
         with patch_file(empty_files, empty_tables):
             pren = prenoms.get_prenom()
             self.assertEqual(pren, '')
