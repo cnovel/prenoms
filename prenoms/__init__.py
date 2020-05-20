@@ -3,7 +3,7 @@ from prenoms.utils import Gender, Originality
 from random import random
 
 __title__ = 'prenoms'
-__version__ = '0.5.0'
+__version__ = '0.5.1'
 __author__ = 'Cyril Novel'
 __license__ = 'MIT'
 
