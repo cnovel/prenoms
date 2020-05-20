@@ -130,14 +130,13 @@ def create_key(name_type: str, year: int, gender: Gender = None):
 
 
 def get_bounds_from_table(table: NameTable, originality: Originality) -> (int, int):
-    if originality == Originality.COMMON:
-        return 0, table.common_id()
     if originality == Originality.UNCOMMON:
         return table.common_id(), table.uncommon_id()
     if originality == Originality.RARE:
         return table.uncommon_id(), table.rare_id()
     if originality == Originality.VERY_RARE:
         return table.rare_id(), table.total_id()
+    return 0, table.common_id()
 
 
 def get_name_from_table(table: NameTable, originality: Originality):
