@@ -110,7 +110,7 @@ def create_key(name_type: str, year: int, gender: Gender = None):
             year_string = '1981'
         elif year < 2001:
             year_string = '1991'
-        elif year >= 2001 and t == 'last':
+        elif year >= 2001 and name_type == 'last':
             year_string = '1991'
         elif year < 2011:
             year_string = '2001'
