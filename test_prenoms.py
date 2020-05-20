@@ -5,6 +5,7 @@ from os.path import abspath, join, dirname
 from io import StringIO
 import prenoms
 from prenoms import Originality, Gender
+from prenoms.utils import create_key
 from prenoms.main import main
 
 
@@ -106,6 +107,23 @@ class NamesTest(unittest.TestCase):
             self.assertEqual(pren, '')
             self.assertEqual(prenoms.get_nom(), '')
             self.assertEqual(prenoms.get_nom_complet(), '')
+
+    def test_create_key(self):
+        for i in range(1899, 1999, 10):
+            self.assertEqual(create_key('last', i), 'last.{}'.format(i-8))
+        self.assertEqual(create_key('last', 2003), 'last.1991')
+        self.assertEqual(create_key('first', 1850, Gender.MALE), 'first.m.1901')
+        self.assertEqual(create_key('first', 2005, Gender.MALE), 'first.m.2001')
+        self.assertEqual(create_key('first', 2015, Gender.FEMALE), 'first.f.2011')
+
+    def test_bad_name_tables(self):
+        for i in [1, 2]:
+            nt = prenoms.utils.NameTable(full_test_path('bad_{}.txt'.format(i)))
+            self.assertEqual(nt.common_id(), 0)
+            self.assertEqual(nt.uncommon_id(), 0)
+            self.assertEqual(nt.rare_id(), 0)
+            self.assertEqual(nt.total_id(), 0)
+            self.assertEqual(nt.get_name(0), '')
 
 
 class CommandLineTest(unittest.TestCase):
